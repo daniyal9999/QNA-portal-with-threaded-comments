@@ -1,0 +1,17 @@
+<nav class="navbar fixed-top">
+  <div class="navbar-brand">
+    <a routerLink="/">QnA App</a>
+  </div>
+  <div class="navbar-menu">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a routerLink="/questions" routerLinkActive="active">Questions</a>
+    <a routerLink="/questions/ask" routerLinkActive="active">Ask Question</a>
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+    <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
+  </div>
+</nav>

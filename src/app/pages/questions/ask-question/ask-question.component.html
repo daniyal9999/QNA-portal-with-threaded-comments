@@ -1,0 +1,99 @@
+<div class="ask-question-container">
+  <p-toast></p-toast>
+
+  <h1>Ask a Question</h1>
+  <p class="lead">
+    Get help from the community by asking a clear, specific question
+  </p>
+
+  <div class="question-form-container">
+    <form [formGroup]="questionForm" (ngSubmit)="submitQuestion()">
+      <!-- Title -->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="form-hint">
+          Be specific and imagine you're asking another person
+        </div>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="e.g. How to implement authentication in Angular?"
+          [ngClass]="{ 'error-input': submitted && f['title'].errors }"
+        />
+        <div *ngIf="submitted && f['title'].errors" class="error-text">
+          <div *ngIf="f['title'].errors['required']">Title is required</div>
+          <div *ngIf="f['title'].errors['minlength']">
+            Title must be at least 15 characters
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="form-group">
+        <label for="body">Body</label>
+        <div class="form-hint">
+          Include all the information someone would need to answer your question
+        </div>
+        <textarea
+          id="body"
+          formControlName="body"
+          rows="10"
+          placeholder="Explain your question in detail..."
+          [ngClass]="{ 'error-input': submitted && f['body'].errors }"
+        ></textarea>
+        <div *ngIf="submitted && f['body'].errors" class="error-text">
+          <div *ngIf="f['body'].errors['required']">
+            Question body is required
+          </div>
+          <div *ngIf="f['body'].errors['minlength']">
+            Body must be at least 30 characters
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <div class="form-hint">
+          Add up to 5 tags to describe what your question is about
+        </div>
+        <input
+          type="text"
+          id="tags"
+          formControlName="tags"
+          placeholder="e.g. angular, typescript (comma separated)"
+          [ngClass]="{ 'error-input': submitted && f['tags'].errors }"
+        />
+        <div *ngIf="submitted && f['tags'].errors" class="error-text">
+          <div *ngIf="f['tags'].errors['required']">
+            At least one tag is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="loading">
+          <span *ngIf="!loading">Post Your Question</span>
+          <span *ngIf="loading">Posting...</span>
+        </button>
+        <button type="button" class="btn-secondary" routerLink="/questions">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tips Section -->
+  <div class="tips-section">
+    <h3>Tips for asking a good question</h3>
+    <ul>
+      <li>Summarize your problem in a one-line title</li>
+      <li>Describe what you've tried and what you expected to happen</li>
+      <li>Add code examples if applicable</li>
+      <li>Add relevant tags to help categorize your question</li>
+      <li>Proofread your question before posting</li>
+    </ul>
+  </div>
+</div>
